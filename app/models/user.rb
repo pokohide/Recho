@@ -23,6 +23,7 @@
 #  uid                    :string
 #  username               :string           default(""), not null
 #  display_name           :string
+#  image                  :string
 #
 # Indexes
 #
@@ -32,7 +33,7 @@
 #
 
 class User < ApplicationRecord
-  mount_uploader :thumbnail, ThumbnailUploader
+  mount_uploader :image, ThumbnailUploader
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -54,7 +55,7 @@ class User < ApplicationRecord
         username: auth.info.name,
         email: User.get_email(auth),
         # password: Devise.friendly_token[4, 30],
-        thumbnail: auth.info.image
+        image: auth.info.image
       )
       user.skip_confirmation!
       user.save!

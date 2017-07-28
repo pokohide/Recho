@@ -23,6 +23,7 @@
 #  uid                    :string
 #  username               :string           default(""), not null
 #  display_name           :string
+#  image                  :string
 #
 # Indexes
 #
