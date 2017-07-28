@@ -32,9 +32,69 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :thumbnail, ThumbnailUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[twitter facebook]
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :display_name, presence: true
+  validates :username, presence: true, username: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
+  def self.find_for_oauth(auth)
+    # providerとuidでUserレコードを取得する。存在しない場合は、ブロック内のコードを実行して作成
+    # user = User.where(provider: auth.provider, uid: auth.uid).first
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+    unless user
+      user = User.new(
+        uid: auth.uid,
+        provider: auth.provider,
+        username: auth.info.name,
+        email: User.get_email(auth),
+        # password: Devise.friendly_token[4, 30],
+        thumbnail: auth.info.image
+      )
+      user.skip_confirmation!
+      user.save!
+    end
+    user
+  end
+
+  # Devise の RegistrationsController はリソースを生成する前にself.new_with_controllerを呼ぶ
+  def self.new_with_session(params, session)
+    if session['devise.user_attributes']
+      new(session['devise.user_attributes'], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
+  end
+
+  # providerがある場合はパスワードを要求しないようにする
+  def password_required?
+    super && provider.blank?
+  end
+
+  # プロフィールを変更する時に呼ばれる
+  def update_with_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+
+    clean_up_passwords
+    update_attributes(params, *options)
+  end
+
+  def self.get_email(auth)
+    email = auth.info.email
+    email = "#{auth.provider}-#{auth.uid}@example.com" if email.blank?
+    email
+  end
 end
