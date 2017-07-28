@@ -1,0 +1,52 @@
+- title = '新規登録'
+- assign_meta_tags ({ title: title,
+  open_graph: { title: title },
+  og: { title: title },
+  twitter: { title: title } })
+
+.ui.middle.aligned.center.aligned.grid
+  .form-container
+    h2.ui.teal.header
+      .content 新規登録
+
+    .ui.two.column.middle.aligned.very.relaxed.stackable.grid.segment
+      .column
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'ui large form') do |f|
+          .ui.message
+            = devise_error_messages!
+          .field
+            label = f.label :email, 'メールアドレス'
+            .ui.left.icon.fluid.input
+              i.mail.outline.icon
+              = f.text_field :email, placeholder: 'メールアドレス', class: 'input', autofocus: true
+          - if f.object.password_required?
+            .field
+              label = f.label :password, 'パスワード'
+              - if @minimum_password_length
+                b = "(最低#{@minimum_password_length}文字)"
+              .ui.left.icon.fluid.input
+                i.lock.icon
+                = f.password_field :password, placeholder: 'パスワード', class: 'input', autocomplete: 'off'
+            .field
+              .ui.left.icon.fluid.input
+                i.lock.icon
+                = f.password_field :password_confirmation, placeholder: 'パスワード確認', class: 'input', autocomplete: 'off'
+          = f.submit '新規登録', class: 'ui fluid large teal submit button'
+
+      .ui.vertical.divider(style='left:50%') Or
+
+      .center.aligned.column
+        = link_to omniauth_authorize_path(resource_name, :twitter), class: 'ui twitter omniauth button' do
+          i.twitter.icon
+          | Twitterで登録
+        = link_to omniauth_authorize_path(resource_name, :facebook), class: 'ui facebook omniauth button' do
+          i.facebook.icon
+          | Facebookで登録
+
+    .ui.message
+      p
+        = link_to new_user_registration_path, style: 'color:#333' do
+          | 新規登録する
+
+      == render 'devise/shared/links'
+
