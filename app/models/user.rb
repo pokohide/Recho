@@ -44,6 +44,9 @@ class User < ApplicationRecord
   validates :username, presence: true, username: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
+  # References
+  has_many :rooms, dependent: :destroy
+
   def self.find_for_oauth(auth)
     # providerとuidでUserレコードを取得する。存在しない場合は、ブロック内のコードを実行して作成
     # user = User.where(provider: auth.provider, uid: auth.uid).first
