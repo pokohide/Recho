@@ -1,5 +1,6 @@
 require_relative 'boot'
 require 'rails/all'
+require 'oembed'
 
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load

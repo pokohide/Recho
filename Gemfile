@@ -58,6 +58,10 @@ gem 'omniauth-twitter'
 
 # API
 gem 'jbuilder', '~> 2.5'
+gem 'ruby-oembed'
+
+# Utils
+gem 'sanitize'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 

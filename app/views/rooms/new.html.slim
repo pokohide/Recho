@@ -1,2 +1,54 @@
-h1 Rooms#new
-p Find me in app/views/rooms/new.html.slim
+- breadcrumb :upload
+- title = 'アップロード'
+- assign_meta_tags ({ title: title,
+  open_graph: { title: title },
+  og: { title: title },
+  twitter: { title: title } })
+
+.upload-container
+
+  .ui.two.unstackable.steps
+    .active.step.one
+      i.file.powerpoint.outline.icon
+      .content
+        .title スライド
+        .description スライドの共有リンクを入力
+
+    .step.two
+      i.write.icon
+      .content
+        .title 詳細
+        .description タイトルを入力
+
+  = form_for(@room, url: rooms_path, class: 'ui large form') do |f|
+    .step-content.active.one
+      .ui.segment
+        .field
+          .ui.action.fluid.input
+            = f.text_field :slide_url, class: 'input', placeholder: 'https://www.slideshare.net/HidenobuSakai/webothlotech'
+            .button#next-step.ui.teal.right.labeled.icon.button(data-loading='true')
+              i.search.icon
+              | 検索
+
+        .example
+          p
+            b ex.)
+            | https://www.slideshare.net/xxxx/xxxx, https://speakerdeck.com/xxxx/xxxx
+
+    .step-content.two
+      .ui.segment
+        .slide-preview
+
+        = f.hidden_field :provider
+        = f.hidden_field :html
+
+        .field
+          label = f.label :title, 'タイトル'
+          .ui.fluid.input
+            = f.text_field :title, class: 'input'
+
+        .button#prev-step.ui.right.labeled.left.floated.icon.teal.button
+          i.left.arrow.icon
+          | 戻る
+
+        = f.submit '登録', class: 'ui right floated positive disabled button', id: 'upload-button'

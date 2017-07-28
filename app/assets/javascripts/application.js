@@ -3,18 +3,17 @@
 //= require jquery-ui
 //= require semantic-ui
 //= require jquery.readyselector
+//= require jquery.embedly
 //= require alertify
 //= require action_cable
 
 window.App || (window.App = {});
 window.App.cable = ActionCable.createConsumer()
 
-// import 'components/base'
+import 'components/base'
 
 $(document).ready(() => {
   $('.ui.dropdown.profile').dropdown({ on: 'hover' })
-  $('.ui.dropdown.categories').dropdown({ on: 'hover' })
-  $('.ui.checkbox').checkbox()
 
   $('.flash-message .close.icon').on('click', function(e) {
     $(this).parent('.flash-message').fadeOut(500)

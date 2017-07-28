@@ -1,13 +1,4 @@
 module ApplicationHelper
-  def thumbail_tag(user, options = {})
-    class_name = options[:class].blank? ? 'thumbnail' : options[:class].to_s + ' thumbnail'
-    if user.try(:thumbnail).present?
-      image_tag user.thumbnail, class: class_name
-    else
-      image_tag 'user.png', class: class_name
-    end
-  end
-
   def flash_messages
     content_tag(:div, class: 'flash-messages') do
       flash.each do |type, msg|

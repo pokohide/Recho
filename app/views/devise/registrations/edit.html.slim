@@ -1,4 +1,4 @@
-- breadcrumb :edit_profile
+- breadcrumb :edit_account
 - title = 'プロフィール編集'
 - assign_meta_tags ({ title: title,
   open_graph: { title: title },
@@ -21,11 +21,9 @@
                 li = message
 
         .field
-          - if current_user.thumbnail.present?
-            = image_tag current_user.thumbnail, class: 'ui centered small image', style: 'margin-bottom: 2em'
+          = thumbnail_tag(@user)
           .ui.fluid.input
-            = f.file_field :thumbnail, class: 'input', accept: 'image/jpg,image/jpeg,image/png,image/gif'
-
+            = f.file_field :image, class: 'input', accept: 'image/jpg,image/jpeg,image/png,image/gif'
 
         div(class="#{field(@user, :display_name)}")
           label = f.label :display_name, '表示名'

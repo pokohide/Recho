@@ -1,2 +1,10 @@
-h1 Users#account
-p Find me in app/views/users/account.html.slim
+- breadcrumb :my_account
+- assign_meta_tags ({ title: 'マイページ' })
+
+.ui.container
+  section.ui.segment
+    h3.ui.header
+      = thumbnail_tag @user, class: 'ui large image'
+      .content
+        = link_to @user.display_name, user_path(@user.username)
+        .sub.header = "スライド"
