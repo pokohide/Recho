@@ -49,10 +49,12 @@ class User < ApplicationRecord
     # user = User.where(provider: auth.provider, uid: auth.uid).first
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     unless user
+      binding.pry
       user = User.new(
         uid: auth.uid,
         provider: auth.provider,
-        username: auth.info.name,
+        username: auth.info.nickname,
+        display_name: auth.info.name,
         email: User.get_email(auth),
         # password: Devise.friendly_token[4, 30],
         image: auth.info.image
