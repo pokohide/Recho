@@ -1,0 +1,13 @@
+.button {
+
+  &.omniauth {
+    width: 100%;
+    margin: 2em 0;
+  }
+}
+
+.ui.button button {
+  background: none;
+  border: none;
+  padding: 0;
+}

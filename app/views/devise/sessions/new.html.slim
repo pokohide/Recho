@@ -12,9 +12,6 @@
     .ui.two.column.middle.aligned.very.relaxed.stackable.grid.segment
       .column
         = form_for(resource, as: resource_name, url: session_path(resource_name), class: 'ui large form') do |f|
-
-          .ui.message
-            = devise_error_messages!
           .field
             label = f.label :email, 'メールアドレス'
             .ui.left.icon.fluid.input
