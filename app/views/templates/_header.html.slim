@@ -1,0 +1,73 @@
+/ .ui.tiered.huge.nav.menu.header
+/   .ui.container.grid
+/     .computer.only.row
+/       = link_to 'Tease.me', root_path, class: 'item header'
+/       .ui.pointing.dropdown.link.item.categories
+/         .text カテゴリ
+/         i.dropdown.icon
+/         .menu
+/           - Slide.categories_i18n.invert.to_a.each do |key, value|
+/             = link_to key, category_path(value), class: 'item'
+
+/       .right.menu
+/         - if user_signed_in?
+/           = link_to 'アップロード', upload_path, class: 'item'
+/           .ui.pointing.dropdown.link.item.profile
+/             .text
+/               = thumbail_tag current_user
+/               span = current_user.display_name
+/             i.dropdown.icon
+/             .menu
+/               = link_to 'マイページ', account_path, class: 'item'
+/               = link_to 'プロフィール変更', edit_user_registration_path, class: 'item'
+/               = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'item'
+/         - else
+/           = link_to 'サインイン', new_user_registration_path, class: 'item'
+/           = link_to 'ログイン', new_user_session_path, class: 'item'
+
+/     .tablet.mobile.only.row
+/       = link_to 'Tease.me', root_path, class: 'item header'
+/       .right.menu
+/         .ui.basic.icon.toggle.button
+/           i.content.icon
+/         - if user_signed_in?
+/           .item
+/             | ログインなう
+/         - else
+/           .item
+/             | ログイン
+/       .ui.vertical.accordion.borderless.fluid.menu
+/         = link_to 'Theme', '#', class: 'item'
+/         = link_to 'Main', '#', class: 'item'
+/         = link_to 'Home', '#', class: 'item'
+
+
+/ /   .ui.container
+/ /     = link_to root_path, class: 'header item' do
+/ /       = image_tag 'logo.png', class: 'logo'
+
+/ /     .right.menu
+
+/ /       - if logged_in?
+/ /         - cache current_user do
+/ /           .ui.right.floated.dropdown.item
+/ /             b.username = current_user.username
+/ /             i.dropdown.icon
+/ /             .menu
+/ /               = link_to 'ダッシュボード', admin_dashboard_path, class: 'item'
+/ /               = link_to '設定', admin_edit_path, class: 'item'
+/ /               = link_to 'ログアウト', logout_path, method: :delete, class: 'item'
+/ /       - else
+/ /         .item
+/ /           .ui.buttons
+/ /             = link_to 'ログイン', login_path, class: 'ui positive button'
+/ /             .or
+/ /             = link_to 'サインイン', signup_path, class: 'ui button'
+
+/ / .ui.vertical.inverted.sidebar.menu
+/ /   a.active.item Home
+/ /   a.item Work
+/ /   a.item Company
+/ /   a.item Careers
+/ /   a.item Login
+/ /   a.item Signup
