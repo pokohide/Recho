@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728073212) do
+ActiveRecord::Schema.define(version: 20170728082253) do
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "admin_key",  default: "", null: false
+    t.string   "public_key", default: "", null: false
+    t.string   "title",      default: "", null: false
+    t.integer  "slide_type"
+    t.string   "slide_url",  default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["admin_key", "public_key"], name: "index_rooms_on_admin_key_and_public_key", unique: true
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
