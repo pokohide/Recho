@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "globals": {
+    "alert": false,
+    "document": false,
+    "console": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 2015
+  },
+  "rules": {
+    "strict" : false,
+    "no-extra-semi": "warn",
+    "semi" : [2 , "never"],
+    "no-undef": "warn",
+    "no-unused-vars": [1, {"vars" : "all", "args" : "after-used"} ],
+    "quotes": ["warn", "single"],
+    "space-before-blocks": ["warn", { "functions": "always" }]
+  }
+}

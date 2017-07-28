@@ -1,0 +1,31 @@
+ja:
+  meta_tags:
+    defaults:
+      site: '名古屋のサークル・イベント情報サイト BeeApp'
+      reverse: true
+      separator: '|'
+      keywords: '名古屋,学生,サークル,イベント,マガジン,情報,名古屋大学,南山大学,名城大学,中京大学'
+      title: ''
+      charset: 'utf-8'
+      viewport: 'width=device-width, initial-scale=1.0'
+      description: 'BeeAppでは名古屋の学生向けにサークル情報、イベント情報、マガジンなどをアプリで紹介しています。
+        サークルを動画で紹介する機能もあります。サークルの広報もお任せください。名古屋のイベント情報も盛りだくさんです。'
+      open_graph:
+        title: '名古屋のサークル・イベント情報サイト BeeApp'
+        url: ''
+      og:
+        title: '名古屋のサークル・イベント情報サイト BeeApp'
+        type: 'website'
+        url: ''
+        image: ''
+        site_name: 'BeeApp'
+        description: 'BeeAppでは名古屋の学生向けにサークル情報、イベント情報、マガジンなどをアプリで紹介しています。
+          サークルを動画で紹介する機能もあります。サークルの広報もお任せください。名古屋のイベント情報も盛りだくさんです。'
+        locale: 'ja_JP'
+      twitter:
+        card: 'summary'
+        site: '@BeeAppTeam'
+        title: '名古屋のサークル・イベント情報サイト BeeApp'
+        description: 'BeeAppでは名古屋の学生向けにサークル情報、イベント情報、マガジンなどをアプリで紹介しています。
+          サークルを動画で紹介する機能もあります。サークルの広報もお任せください。名古屋のイベント情報も盛りだくさんです。'
+        image: ''
