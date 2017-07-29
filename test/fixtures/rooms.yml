@@ -6,12 +6,13 @@
 #  user_id    :integer
 #  admin_key  :string           default(""), not null
 #  public_key :string           default(""), not null
+#  slug       :string           default(""), not null
 #  title      :string           default(""), not null
+#  provider   :integer
 #  slide_url  :string           default(""), not null
+#  html       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  provider   :integer
-#  html       :text
 #
 # Indexes
 #

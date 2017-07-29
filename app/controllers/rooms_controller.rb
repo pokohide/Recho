@@ -6,6 +6,10 @@ class RoomsController < ApplicationController
     @rooms = Room.page(params[:page])
   end
 
+  def show
+    @room = Room.find_by(id: params[:id])
+  end
+
   def new
     @room = current_user.rooms.new
   end

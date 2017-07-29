@@ -52,7 +52,6 @@ class User < ApplicationRecord
     # user = User.where(provider: auth.provider, uid: auth.uid).first
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     unless user
-      binding.pry
       user = User.new(
         uid: auth.uid,
         provider: auth.provider,

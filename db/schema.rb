@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728162749) do
+ActiveRecord::Schema.define(version: 20170728082253) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "admin_key",  default: "", null: false
     t.string   "public_key", default: "", null: false
+    t.string   "slug",       default: "", null: false
     t.string   "title",      default: "", null: false
+    t.integer  "provider"
     t.string   "slide_url",  default: "", null: false
+    t.text     "html"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "provider"
-    t.text     "html"
     t.index ["admin_key", "public_key"], name: "index_rooms_on_admin_key_and_public_key", unique: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end

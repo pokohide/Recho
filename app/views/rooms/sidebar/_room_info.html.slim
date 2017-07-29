@@ -1,0 +1,16 @@
+section.ui.segment.room-info-section
+  .ui.middle.aligned.divided.list
+    .item
+      .right.floated.content = room.created_at.to_s(:date)
+      i.calendar.outline.icon
+      .content 投稿日
+
+    .item
+      .right.floated.content = 0
+      i.star.icon
+      .content スター数
+
+    .item
+      .right.floated.content = "0 Views"
+      i.bar.chart.icon
+      .content 合計

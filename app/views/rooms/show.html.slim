@@ -1,2 +1,53 @@
-h1 Rooms#show
-p Find me in app/views/rooms/show.html.slim
+- title = @room.title
+- description = "#{@room.title}です"
+- assign_meta_tags ({ title: title, description: description,
+  open_graph: { title: title },
+  og: { title: title, description: description },
+  twitter: { title: title, description: description } })
+
+.ui.container.room-container
+  .ui.grid
+    .eleven.wide.column
+      .slide-viewer-wapper
+        .iframe-wrapper
+          = iframe_format @room.html
+
+      .ui.segment
+        - if @room.owner?(current_user)
+          .ui.two.buttons
+            = link_to edit_room_path(@room), class: 'ui teal button' do
+              i.edit.icon
+              | 編集
+            = link_to '#', class: 'ui olive button' do
+              i.play.icon
+              | スライドモード
+
+        h1.ui.justifiedheader
+          = @room.title
+        p
+          = "公開日: #{@room.created_at.to_s(:date)} in "
+
+      .ui.segment
+        .ui.secondary.pointing.menu#tabs
+          .item.active(data-tab='comment')
+            i.comment.outline.icon
+            | コメント
+          .item(data-tab='stars')
+            i.empty.star.icon
+            | スター
+          .item(data-tab='statistics')
+            i.bar.chart.icon
+            | 統計
+          .item(data-tab='note')
+            i.file.text.outline.icon
+            | ノート
+
+        /== render 'comment_tab', slide: @slide, comments: @comments
+        /== render 'statistics_tab', slide: @slide, statistics: @slide.statistics
+        /== render 'stars_tab', slide: @slide
+        /== render 'note_tab', slide: @slide
+
+    .five.wide.column.sidebar-column
+      == render 'rooms/sidebar/user_info', user: @room.user
+      == render 'rooms/sidebar/room_info', room: @room
+      == render 'rooms/sidebar/share', room: @room
