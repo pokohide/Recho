@@ -1,6 +1,0 @@
-section.ui.segment.user-info
-  h3.ui.header
-    = thumbnail_tag user, class: 'ui small image'
-    .content
-      = link_to user.display_name, user_path(user.username)
-      .sub.header = "#{user.rooms.size}スライド"
