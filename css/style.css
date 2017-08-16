@@ -4,4 +4,11 @@
 .index {
   min-height: 500px;
 }
+.contact-field {
+  padding: 4em 0;
+  border-top: 1px dotted #888;
+  background: #eee;
+  color: #333;
+}
+
 
